@@ -1,0 +1,2 @@
+string islemLogText = string.Format("Gönderilen Grup: {0} Birim: {1} SmsMetni: {2}", rblSmsGrup.SelectedValue, birim, txtMesajMetni.Text);
+LogIslem.CreateIslemLog(SQL3, kullanici.TCKN, Enums.LogIslemTipi.SmsGonderim.ToString(), islemLogText);
