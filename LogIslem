@@ -1,0 +1,29 @@
+public class LogIslem
+    {
+        public static void CreateIslemLog(string connectionString, long tckn, string islemTipi, string detay)
+        {
+            try
+            {
+                SqlHelper.ExecuteNonQuery(connectionString, CommandType.Text, "INSERT INTO IslemLoglari (TCKN, Sayfa, IslemTipi, Detay) VALUES(@TCKN, @Sayfa, @IslemTipi, @Detay)",
+                new SqlParameter("@TCKN", tckn),
+                new SqlParameter("@Sayfa", HttpContext.Current.Request.UrlReferrer.AbsolutePath),
+                new SqlParameter("@IslemTipi", islemTipi),
+                new SqlParameter("@Detay", detay));
+            }
+            catch { }
+
+        }
+
+        public static void CreateHataLog(string connectionString, string aciklama, string baslik, string url)
+        {
+            try
+            {
+                SqlHelper.ExecuteNonQuery(connectionString, CommandType.Text, "INSERT INTO HataLoglari (Aciklama, Baslik, URL) VALUES(@Aciklama, @Baslik, @URL)",
+                new SqlParameter("@Aciklama", aciklama),
+                new SqlParameter("@Baslik", KarakterIslem.Kisalt(baslik, 250)),
+                new SqlParameter("@URL", KarakterIslem.Kisalt(url, 250)));
+            }
+            catch { }
+
+        }
+    }
