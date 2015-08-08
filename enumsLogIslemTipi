@@ -1,0 +1,9 @@
+public enum LogIslemTipi
+        {
+            Giris,
+            Cikis,
+            Rapor,
+            Sorgu,
+            MesaiDuzenleme,
+            SmsGonderim
+        }
